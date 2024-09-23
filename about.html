@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ABOUT US</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .row1 {
+            background-color: rgb(0, 0, 0);
+            height: 50px;
+            display: flex;
+            justify-content: center;
+            text-transform: uppercase;
+            align-items: center;
+        }
+        ol {
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+        ol li {
+            padding: 0 20px;
+        }
+        ol li a {
+            color: white;
+            text-decoration: none;
+        }
+        ol li a:hover {
+            background-color: grey;
+            padding: 5px;
+            border-radius: 5px;
+        }
+        .about-container {
+            display: flex;
+            margin: 20px;
+        }
+        .about-image {
+            margin-right: 20px;
+        }
+        .about-info, .mission {
+            background-color: #f9f9f9;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            padding: 20px;
+            height: 250px;
+            width: 400px; /* Adjusted width for consistency */
+            box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.1);
+            text-align: left; /* Align text to the left */
+        }
+        .mission {
+            margin-top: 20px; /* Space between about info and mission */
+        }
+        .team {
+            margin-top: 40px;
+        }
+        .team-cards {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+        }
+        .card {
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            margin: 10px;
+            width: 220px; /* Adjust width for consistency */
+            text-align: center;
+            box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.1);
+        }
+        .card-img img {
+            border-radius: 10px 10px 0 0;
+            width: 100%;
+            height: auto;
+        }
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #333;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="row1">
+        <ol>
+            <li><a href="header.html">home</a></li>
+            <li><a href="about.html">about</a></li>
+            <li><a href="impact.html">our impact</a></li>
+            <li><a href="contact.html">contact</a></li>
+            <li><a href="">register</a></li>
+        </ol>
+    </div>
+    <div class="about-container">
+        <div class="about-image">
+            <img src="img/dec.jpg" height="500px" width="400px" alt="About Us Image">
+        </div>
+        <div class="about-info">
+            <h1>About Us</h1>
+            <p style="font-weight: bold">
+                At CARE CYCLE, we believe that everyone deserves access to the best possible healthcare.
+                Our mission is to empower individuals to understand and manage their health better through innovative technology.
+                We aim to bridge the gap between patients and healthcare providers, making health management easier and more effective.
+            </p>
+            <div class="mission">
+                <h1>What We Do</h1>
+                <p>
+                    Our app provides tools and resources to help users identify signs of various conditions, including cancer, acne, and other diseases.
+                    Using advanced features like skin scanning, tongue scanning, and heart rate detection, we analyze behavioral patterns to offer personalized insights.
+                    These insights guide users on their journey to recovery and help them make informed decisions about their health.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <section class="team">
+        <h1>Meet Our Team</h1>
+        <div class="team-cards">
+            <!-- Card 1 -->
+            <div class="card">
+                <div class="card-img">
+                    <img src="img\Anime sketch manga Cartoon art styles Animation art sketches.jpg" height="250px" width="200px" alt="User 1">
+                </div>
+                <div class="card-info">
+                    <h2 class="card-name">Jane</h2>
+                    <p class="card-role">CEO and Founder</p>
+                    <p class="card-email">jane@example.com</p>
+                    <p><button class="button">Contact</button></p>
+                </div>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="card">
+                <div class="card-img">
+                    <img src="img\Premium Vector _ Cute boy face smiling.jpg" height="250px" width="200px" alt="User 2">
+                </div>
+                <div class="card-info">
+                    <h2 class="card-name">Miller</h2>
+                    <p class="card-role">Co-Founder</p>
+                    <p class="card-email">miller@example.com</p>
+                    <p><button class="button">Contact</button></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2023 Carecycle. All Rights Reserved.</p>
+    </footer>
+</body>
+</html>

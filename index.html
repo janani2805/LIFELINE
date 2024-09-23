@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medical Health Assistant Chatbot</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #e0f7fa; /* Light blue background */
+            color: #006064; /* Darker blue text */
+        }
+        h2 {
+            color: #00838f; /* Teal header */
+        }
+        #chat-box {
+            border: 2px solid #004d40; /* Dark teal border */
+            background-color: #ffffff; /* White chatbox */
+            padding: 10px;
+            width: 75%px;
+            height: 400px;
+            overflow-y: scroll;
+            margin-bottom: 10px;
+            border-radius: 8px;
+        }
+        #chat-box p {
+            margin: 0;
+            padding: 5px;
+        }
+        #user-input {
+            width: 80%;
+            padding: 5px;
+            border: 1px solid #004d40;
+            border-radius: 4px;
+        }
+        button {
+            padding: 5px 10px;
+            background-color: #004d40; /* Dark teal button */
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #006064; /* Slightly lighter teal on hover */
+        }
+    </style>
+</head>
+<body>
+    <h2>Medical Health Assistant</h2>
+    <div id="chat-box">
+        <p>Bot: Hello! How can I assist you with your medical concerns?</p>
+    </div>
+    <input type="text" id="user-input" placeholder="Type your message here">
+    <button onclick="sendMessage()">Send</button>
+
+    <script src="chatbot.js"></script>
+</body>
+</html>

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skin Problem Detection</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #eaf4ff; /* Light blue background */
+            text-align: center;
+            margin: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background: white;
+            border: 1px solid #99c2ff; /* Light blue border */
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        h1 {
+            margin-bottom: 20px;
+            color: #003366; /* Dark blue heading */
+        }
+        label {
+            display: block;
+            margin: 10px 0 5px;
+            text-align: left;
+            color: #003366; /* Dark blue labels */
+        }
+        input[type="file"] {
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #007bff; /* Blue border */
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #007bff; /* Blue button */
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3; /* Darker blue on hover */
+        }
+        .results {
+            margin-top: 20px;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>AI Skin Problem Detection</h1>
+        <form id="skinForm">
+            <label for="imageInput">Upload a Photo of Your Face</label>
+            <input type="file" id="imageInput" accept="image/*" required>
+            <button type="submit">Detect Skin Issues</button>
+        </form>
+        <div class="results" id="results"></div>
+    </div>
+
+    <script>
+        document.getElementById('skinForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent the default form submission
+            
+            const imageInput = document.getElementById('imageInput');
+            const file = imageInput.files[0];
+
+            if (file) {
+                // Simulating AI analysis (in a real application, you would send this image to a server for processing)
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    // Here you would call your AI model and pass the image data
+                    const simulatedResults = "Detected issues: Acne, Dry skin."; // Sample result
+                    document.getElementById('results').innerHTML = `
+                        <h2>Results:</h2>
+                        <p>${simulatedResults}</p>
+                        <img src="${e.target.result}" alt="Uploaded Face" style="max-width: 100%; border-radius: 5px;">
+                    `;
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+    </script>
+</body>
+</html>

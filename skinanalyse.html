@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Skin Analyzer</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 20px;
+            background-color: #f0f8ff;
+        }
+        .container {
+            max-width: 600px;
+            margin: auto;
+            padding: 20px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #007bff;
+        }
+        #video, #imagePreview {
+            border: 1px solid #ccc;
+            width: 100%;
+            max-width: 500px;
+            margin-bottom: 10px;
+        }
+        #canvas {
+            display: none;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 10px;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        #result {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>AI Skin Analyzer</h1>
+
+        <h3>Use Webcam or Upload an Image</h3>
+        <video id="video" autoplay></video>
+        <canvas id="canvas"></canvas>
+
+        <div>
+            <button id="capture">Capture from Webcam</button>
+            <input type="file" id="uploadImage" accept="image/*">
+        </div>
+
+        <div>
+            <img id="imagePreview" style="display:none;" />
+        </div>
+
+        <div id="result"></div>
+
+        <div>
+            <button id="analyzeSkin">Analyze Skin</button>
+        </div>
+    </div>
+
+    <script>
+        const video = document.getElementById('video');
+        const canvas = document.getElementById('canvas');
+        const context = canvas.getContext('2d');
+        const resultDiv = document.getElementById('result');
+        const imagePreview = document.getElementById('imagePreview');
+        const uploadImage = document.getElementById('uploadImage');
+
+        // Access webcam
+        navigator.mediaDevices.getUserMedia({ video: true })
+            .then(stream => {
+                video.srcObject = stream;
+                video.play();
+            })
+            .catch(err => {
+                console.error('Error accessing webcam:', err);
+            });
+
+        // Capture image from webcam
+        document.getElementById('capture').addEventListener('click', () => {
+            canvas.width = video.videoWidth;
+            canvas.height = video.videoHeight;
+            context.drawImage(video, 0, 0, canvas.width, canvas.height);
+            const imageData = canvas.toDataURL('image/png');
+            imagePreview.src = imageData;
+            imagePreview.style.display = 'block';
+        });
+
+        // Upload image from file
+        uploadImage.addEventListener('change', (event) => {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    imagePreview.src = e.target.result;
+                    imagePreview.style.display = 'block';
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+
+        // Analyze skin (mockup function for now)
+        document.getElementById('analyzeSkin').addEventListener('click', () => {
+            const imageData = imagePreview.src;
+            if (imageData) {
+                resultDiv.innerHTML = '<p>Analyzing your skin... Please wait.</p>';
+                
+                // Mock AI Analysis (In real implementation, you'd send the imageData to a backend AI service)
+                setTimeout(() => {
+                    resultDiv.innerHTML = '<p>Skin Analysis Result: Clear skin with minor blemishes detected.</p>';
+                }, 3000);  // Simulate 3 seconds of analysis
+            } else {
+                resultDiv.innerHTML = '<p>Please capture or upload an image first.</p>';
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skin Scanner</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 20px;
+            background-color: #eaf4ff; /* Light blue background */
+        }
+        h1 {
+            color: #003366; /* Dark blue heading */
+        }
+        #video {
+            border: 2px solid #007bff; /* Blue border */
+            width: 100%;
+            max-width: 500px;
+            border-radius: 8px;
+        }
+        #canvas {
+            display: none;
+        }
+        #result {
+            margin-top: 20px;
+            color: #333;
+        }
+        .gallery {
+            margin-top: 20px;
+        }
+        .gallery img {
+            max-width: 100%;
+            height: auto;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #007bff; /* Blue button */
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        button:hover {
+            background-color: #0056b3; /* Darker blue on hover */
+        }
+    </style>
+</head>
+<body>
+    <h1>Skin Scanner</h1>
+    <video id="video" autoplay></video>
+    <button id="capture">Capture Image</button>
+    <canvas id="canvas"></canvas>
+    <div id="result"></div>
+    <div class="gallery" id="gallery">
+        <h2>Saved Images</h2>
+    </div>
+
+    <script>
+        const video = document.getElementById('video');
+        const canvas = document.getElementById('canvas');
+        const resultDiv = document.getElementById('result');
+        const gallery = document.getElementById('gallery');
+        const captureButton = document.getElementById('capture');
+        const context = canvas.getContext('2d');
+        const images = []; // Array to store image data URLs
+
+        // Access the user's webcam
+        navigator.mediaDevices.getUserMedia({ video: true })
+            .then(stream => {
+                video.srcObject = stream;
+                video.play();
+            })
+            .catch(err => {
+                console.error('Error accessing webcam: ', err);
+            });
+
+        // Capture image from webcam
+        captureButton.addEventListener('click', () => {
+            canvas.width = video.videoWidth;
+            canvas.height = video.videoHeight;
+            context.drawImage(video, 0, 0, canvas.width, canvas.height);
+            const imageDataURL = canvas.toDataURL('image/png');
+            images.push(imageDataURL);
+            displayImages();
+            detectSkinProblems(imageDataURL);
+        });
+
+        // Simulate skin problem detection
+        function detectSkinProblems(imageSrc) {
+            // Simulated results
+            const simulatedResults = "Detected issues: Acne, Dry skin.";
+            resultDiv.innerHTML = `
+                <h2>Detection Results:</h2>
+                <p>${simulatedResults}</p>
+                <img src="${imageSrc}" alt="Captured Face" style="max-width: 100%; border-radius: 5px;">
+            `;
+        }
+
+        // Display images in gallery
+        function displayImages() {
+            gallery.innerHTML = '<h2>Saved Images</h2>';
+            images.forEach((imgSrc) => {
+                const img = document.createElement('img');
+                img.src = imgSrc;
+                gallery.appendChild(img);
+            });
+        }
+    </script>
+</body>
+</html>

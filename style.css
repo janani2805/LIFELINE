@@ -1,0 +1,224 @@
+*{
+    padding:0;
+    margin: 0;
+}
+
+
+#header1{
+    height :250px;
+    width: 100%;
+   
+}
+ 
+
+
+.row1{
+    height:250px;
+    width: 100%;
+    background-color: rgb(27, 162, 185);
+}
+.col1{
+    height: 250px;
+    width: 100px;
+    border: (12, 131, 59);
+    float:left;*{
+        padding:0;
+        margin: 0;
+    }
+    
+    #header1{
+        height :250px;
+        width: 100%;
+       
+    }
+     
+    
+    
+    .row1{
+        height:250px;
+        width: 100%;
+        background-color: rgb(12, 131, 59);
+    }
+    .col1{
+        height: 250px;
+        width: 100px;
+        border: (12, 131, 59);
+        float:left;
+        justify-content: center; /* Centers horizontally */
+        align-items:center; 
+    }
+    .col2{
+        height: 250px;
+        width: calc(100% - 50px);
+    }
+    .col2p{
+        text-align: center;
+        font-size: 30px;
+        text-transform: uppercase;
+        padding-top: 55px;
+        color: grey;
+    }
+    .row2{
+        height: 40px;
+        width: 100%;
+        background-color: black;
+        padding-top:10px;
+    
+    }
+    .col2{
+        height: 300px;
+        width: calc(100%-40px);
+    }
+    
+    ol li{
+        display: inline;
+        padding: 7%;
+        font-size: 25px;
+        text-transform: capitalize;
+    
+    }  
+    ol li a{
+        text-decoration: none;
+        color: white;
+    }
+    ol li a:hover{
+        background-color: grey;
+        padding: 5px;
+        border-style: double;
+        border-radius: 35px;
+        
+    }  
+    
+    .img-button {
+        cursor: pointer;
+    }
+    
+    
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+    }
+    
+    footer {
+        background-color: rgb(12, 131, 59);
+        color: white;
+        height: 50px;
+        text-align: center;
+        width: 100%;
+    }
+    
+    footer nav ul {
+        list-style: none;
+        
+    
+        color: white;
+        text-decoration: none;
+        padding-bottom: 50px;
+        
+    }
+    
+    
+    
+    justify-content: center; /* Centers horizontally */
+    align-items:center; 
+}
+.col2{
+    height: 250px;
+    width: calc(100% - 50px);
+}
+.col2p{
+    text-align: center;
+    font-size: 30px;
+    text-transform: uppercase;
+    padding-top: 55px;
+    color: grey;
+}
+.row2{
+    height: 40px;
+    width: 100%;
+    background-color: black;
+    padding-top:10px;
+
+}
+.col2{
+    height: 300px;
+    width: calc(100%-40px);
+}
+
+ol li{
+    display: inline;
+    padding: 7%;
+    font-size: 25px;
+    text-transform: capitalize;
+
+}  
+ol li a{
+    text-decoration: none;
+    color: white;
+}
+ol li a:hover{
+    background-color: grey;
+    padding: 5px;
+    border-style: double;
+    border-radius: 35px;
+    
+}  
+
+.img-button {
+    cursor: pointer;
+}
+/* Remove underline for all anchor tags (links) */
+a {
+    text-decoration: none;
+    color: black;
+}
+
+/* If you want to specifically target the buttons that are inside the .img-button class */
+.img-button a {
+    text-decoration: none;
+}
+
+/* Optional: Customize button appearance */
+.img-button {
+    border: none;
+    cursor: pointer;
+}
+
+/* Hover effect for buttons */
+.img-button:hover a {
+    text-decoration: none; /* Ensures no underline even on hover */
+}
+
+/* You can also style the button further */
+.img-button:hover {
+    background-color: #ccc; /* Example hover background */
+}
+
+
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+footer {
+    background-color: rgb(27, 162, 185);
+    color: white;
+    height: 50px;
+    text-align: center;
+    width: 100%;
+}
+
+footer nav ul {
+    list-style: none;
+    
+
+    color: white;
+    text-decoration: none;
+    padding-bottom: 50px;
+    
+}
+
+

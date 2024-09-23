@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emergency Contact Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 20px;
+            background-color: #eaf4ff; /* Light blue background */
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background: white;
+            border: 1px solid #99c2ff; /* Light blue border */
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        h1 {
+            margin-bottom: 20px;
+            color: #003366; /* Dark blue heading */
+        }
+        label {
+            display: block;
+            margin: 10px 0 5px;
+            text-align: left;
+            color: #003366; /* Dark blue labels */
+        }
+        input, textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #007bff; /* Blue border */
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #007bff; /* Blue button */
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3; /* Darker blue on hover */
+        }
+        .error {
+            color: red;
+            margin: 10px 0;
+            font-size: 0.9em;
+        }
+        .success {
+            color: green;
+            margin: 10px 0;
+            font-size: 1em;
+        }
+        @media (max-width: 600px) {
+            .container {
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Emergency Contact Form</h1>
+        <form id="emergencyContactForm">
+            <label for="name">Your Full Name</label>
+            <input type="text" id="name" name="name" required>
+            
+            <label for="relative1">Relative 1 Name</label>
+            <input type="text" id="relative1" name="relative1" required>
+            <label for="relationship1">Relationship</label>
+            <input type="text" id="relationship1" name="relationship1" required>
+            <label for="phone1">Phone Number</label>
+            <input type="tel" id="phone1" name="phone1" pattern="[0-9]{10}" required>
+            
+            <label for="relative2">Relative 2 Name (optional)</label>
+            <input type="text" id="relative2" name="relative2">
+            <label for="relationship2">Relationship</label>
+            <input type="text" id="relationship2" name="relationship2">
+            <label for="phone2">Phone Number</label>
+            <input type="tel" id="phone2" name="phone2" pattern="[0-9]{10}">
+
+            <label for="email">Your Email Address</label>
+            <input type="email" id="email" name="email" required>
+            
+            <label for="otp">Enter OTP</label>
+            <input type="text" id="otp" name="otp" required>
+            <button type="button" id="sendOtpButton">Send OTP</button>
+            
+            <label for="address">Your Address</label>
+            <textarea id="address" name="address" rows="4" required></textarea>
+            
+            <button type="submit">Save Contact</button>
+        </form>
+        <div id="message" class="error"></div>
+    </div>
+
+    <script>
+        document.getElementById('sendOtpButton').addEventListener('click', function() {
+            const phone1 = document.getElementById('phone1').value;
+            if (!phone1) {
+                document.getElementById('message').textContent = 'Please enter a phone number for the first relative.';
+                return;
+            }
+            // Simulating OTP sending (In a real application, integrate with a service)
+            const otp = Math.floor(100000 + Math.random() * 900000); // Generate a random 6-digit OTP
+            alert(`OTP sent to ${phone1}: ${otp}`);
+            // Store the OTP in local storage (for demonstration purposes)
+            localStorage.setItem('otp', otp);
+        });
+
+        document.getElementById('emergencyContactForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent the default form submission
+            
+            const name = document.getElementById('name').value;
+            const relative1 = document.getElementById('relative1').value;
+            const relationship1 = document.getElementById('relationship1').value;
+            const phone1 = document.getElementById('phone1').value;
+            const relative2 = document.getElementById('relative2').value;
+            const relationship2 = document.getElementById('relationship2').value;
+            const phone2 = document.getElementById('phone2').value;
+            const email = document.getElementById('email').value;
+            const otp = document.getElementById('otp').value;
+            const address = document.getElementById('address').value;
+
+            // Basic validation
+            if (!name || !relative1 || !relationship1 || !phone1 || !email || !address || !otp) {
+                document.getElementById('message').textContent = 'Please fill in all required fields.';
+                return;
+            }
+
+            // Verify OTP
+            const sentOtp = localStorage.getItem('otp');
+            if (otp !== sentOtp) {
+                document.getElementById('message').textContent = 'Incorrect OTP. Please try again.';
+                return;
+            }
+
+            // Display success message (in a real application, you would submit this data to a server)
+            document.getElementById('message').textContent = '';
+            document.getElementById('message').className = 'success';
+            document.getElementById('message').textContent = 'Emergency contact saved successfully!';
+
+            // Clear the form and local storage
+            document.getElementById('emergencyContactForm').reset();
+            localStorage.removeItem('otp');
+        });
+    </script>
+</body>
+</html>

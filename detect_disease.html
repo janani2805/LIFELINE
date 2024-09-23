@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tongue Scanner</title>
+</head>
+<body>
+    <h2>Tongue Scanner</h2>
+    <video id="video" width="320" height="240" autoplay></video>
+    <button id="capture">Capture Image</button>
+    <canvas id="canvas" width="320" height="240"></canvas>
+
+    <script>
+        // Access the device camera and stream to the video element
+        var video = document.getElementById('video');
+        if (navigator.mediaDevices.getUserMedia) {
+            navigator.mediaDevices.getUserMedia({ video: true })
+                .then(function(stream) {
+                    video.srcObject = stream;
+                })
+                .catch(function(err) {
+                    console.log("Error accessing the camera: " + err);
+                });
+        }
+
+        // Capture the image from video when the button is clicked
+        document.getElementById('capture').addEventListener('click', function() {
+            var canvas = document.getElementById('canvas');
+            var context = canvas.getContext('2d');
+            context.drawImage(video, 0, 0, 320, 240);
+
+            // Send the image to the server for disease detection
+            var dataUrl = canvas.toDataURL('image/png');
+            fetch('/process_image', {
+                method: 'POST',
+                body: JSON.stringify({ image: dataUrl }),
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                alert('Detected Disease: ' + data.disease);
+            })
+            .catch(error => console.log(error));
+        });
+    </script>
+</body>
+</html>

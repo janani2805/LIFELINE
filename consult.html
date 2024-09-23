@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doctor Appointment</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 20px;
+            background-color: #eaf4ff;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background: white;
+            border: 1px solid #b0d4ff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        h1 {
+            margin-bottom: 20px;
+            color: #003366; /* Dark blue */
+        }
+        label {
+            display: block;
+            margin: 10px 0 5px;
+            text-align: left;
+            color: #003366;
+        }
+        input, select, textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #99c2ff; /* Light blue */
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #007bff; /* Blue */
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3; /* Darker blue */
+        }
+        .error {
+            color: red;
+            margin: 10px 0;
+            font-size: 0.9em;
+        }
+        .success {
+            color: green;
+            margin: 10px 0;
+            font-size: 1em;
+        }
+        @media (max-width: 600px) {
+            .container {
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Book an Appointment</h1>
+        <form id="appointmentForm">
+            <label for="name">Full Name</label>
+            <input type="text" id="name" name="name" required>
+            
+            <label for="email">Email Address</label>
+            <input type="email" id="email" name="email" required>
+            
+            <label for="phone">Phone Number</label>
+            <input type="tel" id="phone" name="phone" pattern="[0-9]{10}" required>
+            
+            <label for="date">Appointment Date</label>
+            <input type="date" id="date" name="date" required>
+            
+            <label for="time">Appointment Time</label>
+            <input type="time" id="time" name="time" required>
+            
+            <label for="doctor">Select Doctor</label>
+            <select id="doctor" name="doctor" required>
+                <option value="" disabled selected>Select a doctor</option>
+            </select>
+            
+            <label for="notes">Additional Notes</label>
+            <textarea id="notes" name="notes" rows="4" placeholder="Describe your symptoms or any specific concerns..."></textarea>
+            
+            <label for="file">Upload a Picture (optional)</label>
+            <input type="file" id="file" name="file" accept="image/*">
+            
+            <button type="submit">Book Appointment</button>
+        </form>
+        <div id="message" class="error"></div>
+    </div>
+
+    <script>
+        const doctors = [
+            { id: 'dr-smith', name: 'Dr. Smith' },
+            { id: 'dr-jones', name: 'Dr. Jones' },
+            { id: 'dr-brown', name: 'Dr. Brown' }
+        ];
+
+        const doctorSelect = document.getElementById('doctor');
+        doctors.forEach(doc => {
+            const option = document.createElement('option');
+            option.value = doc.id;
+            option.textContent = doc.name;
+            doctorSelect.appendChild(option);
+        });
+
+        document.getElementById('appointmentForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent the default form submission
+            
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
+            const date = document.getElementById('date').value;
+            const time = document.getElementById('time').value;
+            const doctor = document.getElementById('doctor').value;
+            const notes = document.getElementById('notes').value;
+
+            const appointmentDate = new Date(date);
+            const appointmentTime = new Date(`${date}T${time}`);
+            const now = new Date();
+
+            // Basic validation
+            if (!name || !email || !phone || !date || !time || !doctor) {
+                document.getElementById('message').textContent = 'Please fill in all required fields.';
+                return;
+            }
+            
+            if (appointmentDate < now.setHours(0, 0, 0, 0)) {
+                document.getElementById('message').textContent = 'Appointment date must be in the future.';
+                return;
+            }
+            
+            if (appointmentTime <= now) {
+                document.getElementById('message').textContent = 'Appointment time must be in the future.';
+                return;
+            }
+            
+            // Display success message (in a real application, you would submit this data to a server)
+            document.getElementById('message').textContent = '';
+            document.getElementById('message').className = 'success';
+            document.getElementById('message').textContent = 'Appointment booked successfully!';
+
+            // Clear the form
+            document.getElementById('appointmentForm').reset();
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chatbot</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #e0f7fa; /* Light Blue background */
+            color: #0277bd; /* Dark Blue text */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        #chat-container {
+            width: 400px;
+            background-color: #ffffff; /* White background for chat box */
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+        }
+
+        #chat-box {
+            height: 300px;
+            padding: 10px;
+            overflow-y: auto;
+            border-bottom: 2px solid #0277bd; /* Dark Blue border */
+        }
+
+        #user-input {
+            width: calc(100% - 22px);
+            padding: 10px;
+            border: none;
+            border-top: 1px solid #0277bd; /* Dark Blue border */
+            outline: none;
+        }
+
+        #send-button {
+            background-color: #0277bd; /* Dark Blue */
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 16px;
+        }
+
+        #send-button:hover {
+            background-color: #005c8a; /* Darker Blue on hover */
+        }
+
+        p {
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+    <div id="chat-container">
+        <div id="chat-box"></div>
+        <input type="text" id="user-input" placeholder="Type your message..." />
+        <button id="send-button" onclick="sendMessage()">Send</button>
+    </div>
+
+    <script src="chatbot.js"></script>
+</body>
+</html>

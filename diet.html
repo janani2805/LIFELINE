@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Diet Plan and Suggestions</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+        }
+        label {
+            font-size: 18px;
+            margin-top: 10px;
+        }
+        input, textarea {
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        button {
+            display: inline-block;
+            background-color: hwb(200 15% 32%);
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 18px;
+            width: 100%;
+        }
+        button:hover {
+            background-color: hwb(200 15% 32%);
+        }
+        .meal-plan {
+            margin: 20px 0;
+        }
+        .meal-plan h2 {
+            background-color: hwb(200 15% 32%);
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        .meal-plan ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        .meal-plan ul li {
+            background-color: #ecf0f1;
+            margin: 10px 0;
+            padding: 15px;
+            border-radius: 5px;
+            font-size: 18px;
+        }
+        .suggestions {
+            background-color: #ecf0f1;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+        footer {
+            text-align: center;
+            margin-top: 30px;
+            font-size: 14px;
+            color: #7f8c8d;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>7-Day Diet Plan & Meal Suggestions</h1>
+
+        <!-- Diet Plan Section -->
+        <div class="meal-plan">
+            <h2>Sample Meal Plan</h2>
+            <h3>Breakfast</h3>
+            <ul>
+                <li>Oatmeal with fruits and nuts</li>
+                <li>Greek yogurt with honey and granola</li>
+                <li>Scrambled eggs with spinach and avocado toast</li>
+                <li>Smoothie with banana, spinach, and almond milk</li>
+            </ul>
+            <h3>Lunch</h3>
+            <ul>
+                <li>Grilled chicken salad with mixed greens</li>
+                <li>Quinoa bowl with chickpeas and veggies</li>
+                <li>Turkey sandwich with whole grain bread</li>
+                <li>Lentil soup with a side salad</li>
+            </ul>
+            <h3>Dinner</h3>
+            <ul>
+                <li>Baked chicken breast with sweet potatoes</li>
+                <li>Grilled fish with quinoa and asparagus</li>
+                <li>Stir-fried tofu with mixed vegetables</li>
+                <li>Lean beef stir-fry with brown rice</li>
+            </ul>
+        </div>
+
+        <!-- Meal Input and Suggestions Section -->
+        <form id="mealForm">
+            <h2>Tell Us Your Food Preferences</h2>
+
+            <label for="breakfast">Favorite Breakfast Foods</label>
+            <textarea id="breakfast" placeholder="What breakfast foods do you like?" required></textarea>
+
+            <label for="lunch">Favorite Lunch Foods</label>
+            <textarea id="lunch" placeholder="What lunch foods do you like?" required></textarea>
+
+            <label for="dinner">Favorite Dinner Foods</label>
+            <textarea id="dinner" placeholder="What dinner foods do you like?" required></textarea>
+
+            <button type="button" onclick="generateMealPlan()">Generate Your Custom Meal Plan</button>
+        </form>
+        
+        <div class="suggestions" id="suggestions"></div>
+    </div>
+
+    <script>
+        function generateMealPlan() {
+            // Get user input
+            const breakfastLikes = document.getElementById('breakfast').value.toLowerCase();
+            const lunchLikes = document.getElementById('lunch').value.toLowerCase();
+            const dinnerLikes = document.getElementById('dinner').value.toLowerCase();
+
+            // Prepare custom meal plan suggestions
+            let suggestions = '<h2>Your Custom Meal Plan</h2>';
+            suggestions += '<h3>Breakfast Suggestions:</h3><ul>';
+            suggestions += breakfastLikes.includes('oatmeal') ? '<li>Oatmeal with fruits and nuts</li>' : '<li>Fruit smoothie</li>';
+            suggestions += breakfastLikes.includes('yogurt') ? '<li>Greek yogurt with honey</li>' : '<li>Scrambled eggs with veggies</li>';
+            suggestions += '</ul>';
+
+            suggestions += '<h3>Lunch Suggestions:</h3><ul>';
+            suggestions += lunchLikes.includes('salad') ? '<li>Grilled chicken salad</li>' : '<li>Quinoa bowl with veggies</li>';
+            suggestions += lunchLikes.includes('sandwich') ? '<li>Turkey sandwich</li>' : '<li>Lentil soup</li>';
+            suggestions += '</ul>';
+
+            suggestions += '<h3>Dinner Suggestions:</h3><ul>';
+            suggestions += dinnerLikes.includes('fish') ? '<li>Grilled fish with quinoa</li>' : '<li>Baked chicken with vegetables</li>';
+            suggestions += dinnerLikes.includes('tofu') ? '<li>Stir-fried tofu with veggies</li>' : '<li>Lean beef stir-fry</li>';
+            suggestions += '</ul>';
+
+            // Display suggestions
+            document.getElementById('suggestions').innerHTML = suggestions;
+        }
+    </script>
+
+</body>
+</html>
